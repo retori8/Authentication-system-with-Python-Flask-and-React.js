@@ -13,9 +13,60 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			newUser: { email:"", password:""},
+			url: "http://127.0.0.1:3001",
+			currentUser: null,
+
 		},
+		
 		actions: {
+
+			createNewUser: async (navigate) => {
+				try {
+					const { url, newUser } = getStore();
+					const response = await fetch(`${url}/api/register`, {
+						method: 'POST',
+						body: JSON.stringify({ ...newUser }),
+						headers: {
+							'Content-Type': 'application/json'
+						}
+					})
+
+					const data = await response.json()
+					console.log(data)
+
+					navigate('/acceso')
+
+				} catch (error) {
+					console.log(error);
+				}
+			},
+
+			handleSubmitRegister: (e, navitgate) => {
+				e.preventDefault();
+				console.log(getStore());
+				getActions().createNewUser(navitgate);
+				
+			},
+
+			handleChangeUser(e){
+				const { newUser } = getStore()
+				e.preventDefault();
+				newUser[e.target.name] = e.target.value
+				setStore({ newUser })
+				console.log(getStore().newUser[e.target.name])
+			},
+
+			comprobarLogin(navigate) {
+				console.log(getStore().currentUser)
+				if (getStore().currentUser !== null) {
+					getActions().logout()
+				}
+					navigate('/acceso')
+				
+			},
+			
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

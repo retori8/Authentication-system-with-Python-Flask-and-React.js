@@ -1,3 +1,21 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+.formulario{
+    margin: auto;
+    margin-top: 150px;
+    border-radius: 20px;
+    
+}
+.input{
+    margin: 20px;
+}
+.navbar{
+    background-color: rgb(36, 35, 41);
+}
+#footer{
+    background-color:  rgb(36, 35, 41);
+}
+.logo{
+    color:white
+}
