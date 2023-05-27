@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
+import { FiCommand } from "react-icons/fi";
 
 export const Footer = () => (
-	<footer id="footer" className="footer fixed-bottom mt-auto py-3 text-center">
-		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
-		</p>
+	<footer id="footer" className="footer fixed-bottom mt-auto py-2 text-center">
+		<h1 className="dibujo">
+		<FiCommand />
+		</h1>
 	</footer>
 );

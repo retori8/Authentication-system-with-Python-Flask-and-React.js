@@ -9,16 +9,14 @@ export const Navbar = () => {
 	const navitgate = useNavigate()
   return (
     <nav className="navbar">
-      <div className="container">
-        <Link to="/">
-          <h1 className="text-danger">
-            <FiCommand />
-          </h1>
+      <div className=" container">
+        <Link className="logo" to="/">
+          <h1> Murakami</h1> 
         </Link>
         <div className="ml-auto">
           <button
             type="button"
-            className="btn btnNavbar bg-light"
+            className="btnNavbar btn"
             aria-current="page"
             onClick={(e) => actions.comprobarLogin(navitgate)}
           >

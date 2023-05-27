@@ -5,10 +5,21 @@
     margin: auto;
     margin-top: 150px;
     border-radius: 20px;
-    
+    background-color: rgb(244, 223, 223);
+    border: none;
+}
+.form-control{
+    border: none;
+}
+.logo{
+    color: rgb(244, 223, 223);
+    text-decoration: none;
+    text-decoration-line: none;
+    align-items: center;
 }
 .input{
     margin: 20px;
+    border: none;
 }
 .navbar{
     background-color: rgb(36, 35, 41);
@@ -16,6 +27,11 @@
 #footer{
     background-color:  rgb(36, 35, 41);
 }
-.logo{
-    color:white
+.dibujo{
+    color: rgb(244, 223, 223);
+}
+.btnNavbar{
+    background-color:  rgb(236, 241, 243);
+    border-width: 1px;
+    
 }
