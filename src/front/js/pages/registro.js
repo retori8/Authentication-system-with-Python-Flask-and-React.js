@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "../../styles/home.css";
 
 export const Registro = () => {
@@ -11,9 +11,15 @@ export const Registro = () => {
     <div className="formulario card w-50">
       <div className="card-body">
         <div className="row">
-                <img src="https://i.pinimg.com/564x/13/37/e0/1337e0fb209ed343dfa22de8bd90a6c5.jpg"
-                    className="imagen col-md-6" alt=""/>
-          <form className="col col-md-6" onSubmit={(e) => actions.handleSubmitRegister(e, navigate)}>
+          <img
+            src="https://i.pinimg.com/564x/13/37/e0/1337e0fb209ed343dfa22de8bd90a6c5.jpg"
+            className="imagen col-md-6"
+            alt=""
+          />
+          <form
+            className="col col-md-6"
+            onSubmit={(e) => actions.handleSubmitRegister(e, navigate)}
+          >
             <div className="input mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">
                 Email
@@ -50,7 +56,6 @@ export const Registro = () => {
                 Debe tener entre 5 y 8 caracteres.
               </div>
             </div>
-
             <button
               type="submit"
               className="input btnSubmit btn btn-block create-account bg-dark text-light p-2 px-3"

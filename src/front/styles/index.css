@@ -1,85 +1,78 @@
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
-.formulario{
-    margin: 50px auto;
-    height: 100%;
-    margin-top: 100px;
-    margin-bottom: 120px;
-    border-radius: 20px;
-    background-color: rgb(244, 223, 223);
-    border: none;
+.formulario {
+  margin: 50px auto;
+  height: 100%;
+  margin-top: 100px;
+  margin-bottom: 120px;
+  border-radius: 20px;
+  background-color: rgb(244, 223, 223);
+  border: none;
 }
-.form-control{
-    border: none;
+.form-control {
+  border: none;
 }
-.logo{
-    color: rgb(244, 223, 223);
-    text-decoration: none;
-    text-decoration-line: none;
-    align-items: center;
+.logo {
+  color: rgb(244, 223, 223);
+  text-decoration: none;
+  text-decoration-line: none;
+  align-items: center;
 }
-.input{
-    margin: 20px;
-    border: none;
+.input {
+  margin: 20px;
+  border: none;
 }
-.navbar{
-    background-color: rgb(36, 35, 41);
+.navbar {
+  background-color: rgb(36, 35, 41);
 }
-#footer{
-    background-color:  rgb(36, 35, 41);
+#footer {
+  background-color: rgb(36, 35, 41);
 }
-.dibujo{
-    color: rgb(244, 223, 223);
+.dibujo {
+  color: rgb(244, 223, 223);
 }
-.btnNavbar{
-    background-color: rgb(195, 236, 242);
-    
+.btnNavbar {
+  background-color: rgb(195, 236, 242);
 }
-.imagen{
-    max-width: 60%;
-    object-fit: cover;
+.imagen {
+  max-width: 60%;
+  object-fit: cover;
 }
-.fondo{
-    background-color:  rgb(244, 223, 223);
-    border: none;
-    border-radius: 20px;
+.fondo {
+  background-color: rgb(244, 223, 223);
+  border: none;
+  border-radius: 20px;
 }
-.card-img-top{
-    max-height: 82%;
-    object-fit: cover;
+.card-img-top {
+  max-height: 82%;
+  object-fit: cover;
 }
-#footer{
-    padding-top: 30px;
+#footer {
+  padding-top: 30px;
 }
-.foto-home{
-    margin: auto;
-    border-radius: 20px;
+.foto-home {
+  margin: auto;
+  border-radius: 20px;
 }
-.home{
-    margin: 50px auto;
-    height: 400px;
-    margin-top: 100px;
-    margin-bottom: 110px;
-    border-radius: 20px;
-    background-image: url("https://images.squarespace-cdn.com/content/v1/57825361440243db4a4b7830/0b4d1eec-c842-40e0-a584-a5d0eccd6018/harukimurakami-sounddesign-tannoy-soundset-japaneseauthor-murakami-sabukaru1.jpg");
-    background-size: 800px;
-    background-position-y: 70%;
-    background-position-x: 100%;
-    border: none;
-    object-fit: cover;
+.home {
+  margin: 50px auto;
+  height: 400px;
+  margin-top: 100px;
+  margin-bottom: 110px;
+  border-radius: 20px;
+  background-image: url("https://images.squarespace-cdn.com/content/v1/57825361440243db4a4b7830/0b4d1eec-c842-40e0-a584-a5d0eccd6018/harukimurakami-sounddesign-tannoy-soundset-japaneseauthor-murakami-sabukaru1.jpg");
+  background-size: 800px;
+  background-position-y: 70%;
+  background-position-x: 100%;
+  border: none;
+  object-fit: cover;
 }
-.registrate{
-    background-color: rgb(195, 236, 242);
-    margin: auto;
-    border-radius: 5px;
+.registrate {
+  background-color: rgb(195, 236, 242);
+  margin: auto;
+  border-radius: 5px;
 }
-.boton-registro{
-    margin: 50px;
-    margin-left: 500px;
-    margin-bottom: 150px;
+.boton-registro {
+  margin: 50px;
+  margin-left: 500px;
+  margin-bottom: 150px;
 }
-#navbarli{
-    margin-top: 0.7rem;
-    font-size: medium;
-}
+

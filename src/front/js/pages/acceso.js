@@ -9,8 +9,11 @@ export const Acceso = () => {
     <div className="formulario card w-50">
       <div className="card-body">
         <div className="row">
-        <img src="https://i.pinimg.com/564x/5f/96/82/5f96823913284617b541a9ce2bf2e3fa.jpg"
-                    className="imagen col-md-6" alt=""/>
+          <img
+            src="https://i.pinimg.com/564x/5f/96/82/5f96823913284617b541a9ce2bf2e3fa.jpg"
+            className="imagen col-md-6"
+            alt=""
+          />
           <form className="col">
             <div className="input mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">
@@ -33,8 +36,11 @@ export const Acceso = () => {
                 id="exampleInputPassword1"
               />
             </div>
-            <button type="submit" className="input btn bg-dark text-light p-2 px-3">
-            Acceder
+            <button
+              type="submit"
+              className="input btn bg-dark text-light p-2 px-3"
+            >
+              Acceder
             </button>
           </form>
         </div>
