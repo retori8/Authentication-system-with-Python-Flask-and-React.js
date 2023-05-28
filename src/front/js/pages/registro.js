@@ -11,8 +11,9 @@ export const Registro = () => {
     <div className="formulario card w-50">
       <div className="card-body">
         <div className="row">
-          <div className="img col"></div>
-          <form className="col" onSubmit={(e) => actions.handleSubmitRegister(e, navigate)}>
+                <img src="https://i.pinimg.com/564x/13/37/e0/1337e0fb209ed343dfa22de8bd90a6c5.jpg"
+                    className="imagen col-md-6" alt=""/>
+          <form className="col col-md-6" onSubmit={(e) => actions.handleSubmitRegister(e, navigate)}>
             <div className="input mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">
                 Email
@@ -52,14 +53,13 @@ export const Registro = () => {
 
             <button
               type="submit"
-              className="input btnSubmit btn btn-block create-account bg-dark text-light"
+              className="input btnSubmit btn btn-block create-account bg-dark text-light p-2 px-3"
             >
               Registrarme
             </button>
           </form>
         </div>
       </div>
-
     </div>
   );
 };

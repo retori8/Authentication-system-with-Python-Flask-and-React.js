@@ -2,8 +2,9 @@
     General Styles used on every website (Don't Repeat Yourself)
 */
 .formulario{
-    margin: auto;
-    margin-top: 150px;
+    margin: 50px auto;
+    height: 100%;
+    margin-top: 100px;
     border-radius: 20px;
     background-color: rgb(244, 223, 223);
     border: none;
@@ -35,3 +36,8 @@
     border-width: 1px;
     
 }
+.imagen{
+    max-width: 60%;
+    object-fit: cover;
+}
+
