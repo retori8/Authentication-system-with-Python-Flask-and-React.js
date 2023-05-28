@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/home.css";
-import { FiCommand } from "react-icons/fi";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -16,11 +15,12 @@ export const Navbar = () => {
         <div className="ml-auto">
           <button
             type="button"
-            className="btnNavbar btn"
+            className="btnNavbar btn px-3"
             aria-current="page"
             onClick={(e) => actions.comprobarLogin(navitgate)}
-          >
+          ><strong>
             {store.currentUser ? "Cerrar Sesión" : "Ingresar"}
+            </strong>
           </button>
         </div>
       </div>
