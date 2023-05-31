@@ -1,105 +1,157 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
-			newUser: { email:"", password:""},
-			url: "http://127.0.0.1:3001",
-			currentUser: null,
+  return {
+    store: {
+      message: null,
+      demo: [
+        {
+          title: "FIRST",
+          background: "white",
+          initial: "white",
+        },
+        {
+          title: "SECOND",
+          background: "white",
+          initial: "white",
+        },
+      ],
+      newUser: { email: "", password: "" },
+      url: "https://3001-retori8-authentications-447bevuowdu.ws-us98.gitpod.io",
+      currentUser: null,
+    },
 
-		},
-		
-		actions: {
+    actions: {
+      comprobarLogin(navigate) {
+        console.log(getStore().currentUser);
+        if (getStore().currentUser !== null) {
+          getActions().logout();
+        }
+        navigate("/acceso");
+      },
 
-			createNewUser: async (navigate) => {
-				try {
-					const { url, newUser } = getStore();
-					const response = await fetch(`${url}/api/register`, {
-						method: 'POST',
-						body: JSON.stringify({ ...newUser }),
-						headers: {
-							'Content-Type': 'application/json'
-						}
-					})
+      Register: async (navigate) => {
+        try {
+          const { url, newUser } = getStore();
+          const response = await fetch(`${url}/api/registro`, {
+            method: "POST",
+            body: JSON.stringify({ ...newUser }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
 
-					const data = await response.json()
-					console.log(data)
+          const data = await response.json();
+          console.log(data);
 
-					navigate('/acceso')
+          navigate("/acceso");
+        } catch (error) {
+          console.log(error);
+        }
+      },
 
-				} catch (error) {
-					console.log(error);
-				}
-			},
+      handleSubmitRegister: (e, navitgate) => {
+        e.preventDefault();
+        getActions().Register(navitgate);
+      },
+      handleChangeInput(e) {
+        const { newUser } = getStore();
+        e.preventDefault();
+        newUser[e.target.name] = e.target.value;
+        setStore({ newUser });
+        console.log(getStore().newUser[e.target.name]);
+      },
 
-			handleSubmitRegister: (e, navitgate) => {
-				e.preventDefault();
-				console.log(getStore());
-				getActions().createNewUser(navitgate);
-				
-			},
+      Login: async (e, navigate) => {
+        e.preventDefault();
+        try {
+          const { url, email, password } = getStore();
+          let info = { email, password };
+          const response = await fetch(`${url}/api/login`, {
+            method: "POST",
+            body: JSON.stringify(info),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          console.log(response);
+          const data = await response.json();
+          console.log(data);
 
-			handleChangeUser(e){
-				const { newUser } = getStore()
-				e.preventDefault();
-				newUser[e.target.name] = e.target.value
-				setStore({ newUser })
-				console.log(getStore().newUser[e.target.name])
-			},
+          if (data.access_token) {
+            setStore({ currentUser: data });
+            sessionStorage.setItem("currentUser", JSON.stringify(data));
 
-			comprobarLogin(navigate) {
-				console.log(getStore().currentUser)
-				if (getStore().currentUser !== null) {
-					getActions().logout()
-				}
-					navigate('/acceso')
-				
-			},
-			
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
+            navigate("/home");
+          } else {
+            setStore({
+              alert: {
+                text: "Usuario no registrado",
+                show: true,
+                textbtn: "Registrarme",
+              },
+            });
+          }
+        } catch (error) {
+          console.log(error);
+          console.log("hay un error en el login");
+        }
+      },
 
-			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
-				}
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+      handleChange: (e) => {
+        setStore({
+          [e.target.name]: e.target.value,
+        });
+      },
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+      checkUser: () => {
+        if (sessionStorage.getItem("currentUser")) {
+          setStore({
+            currentUser: JSON.parse(sessionStorage.getItem("currentUser")),
+          });
+        }
+      },
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		}
-	};
+      logout: () => {
+        if (sessionStorage.getItem("currentUser")) {
+          setStore({
+            currentUser: null,
+          });
+          sessionStorage.removeItem("currentUser");
+        }
+      },
+
+      // Use getActions to call a function within a fuction
+      exampleFunction: () => {
+        getActions().changeColor(0, "green");
+      },
+
+      getMessage: async () => {
+        try {
+          // fetching data from the backend
+          const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
+          const data = await resp.json();
+          setStore({ message: data.message });
+          // don't forget to return something, that is how the async resolves
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+      changeColor: (index, color) => {
+        //get the store
+        const store = getStore();
+
+        //we have to loop the entire demo array to look for the respective index
+        //and change its color
+        const demo = store.demo.map((elm, i) => {
+          if (i === index) elm.background = color;
+          return elm;
+        });
+
+        //reset the global store
+        setStore({ demo: demo });
+      },
+    },
+  };
 };
 
 export default getState;

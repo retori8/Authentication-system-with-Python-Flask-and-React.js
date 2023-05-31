@@ -16,3 +16,33 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+# @api.route('/api/registro', methods=['POST'])
+# def register():
+#     data = request.get_json()
+
+#     user = User()
+#     user.email = data["email"]
+#     user.password = generate_password_hash(data["password"])
+    
+#     if not user.email:
+#         return jsonify({ "msg": "Necesitamos tu email"}), 422
+
+#     if not user.password:
+#         return jsonify({ "msg": "Necesitamos que ingreses una contraseña"}), 422
+
+#     user_filter = User.query.filter_by(email=user.email).first()
+
+#     if user_filter:
+#         return jsonify({ "msg": "El usuario ya existe"}), 400
+
+#     user.new_user()
+    
+#     return jsonify({"msg":"register created", "user": user.serialize()}), 201  
+
+# @api.route('/api/users', methods=['GET'])
+# def get_all_users():#trae todos los registros que tengo en mi base de datos
+#     users = User.query.all()
+#     users = list(map(lambda user: user.serialize(), users))#por cada usuario que encuentre llame a serialize que me permite convertirlo en un objeto serializado para ser reconocido por python
+
+#     return jsonify(users), 200     

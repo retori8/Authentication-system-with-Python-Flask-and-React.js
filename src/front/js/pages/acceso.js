@@ -1,9 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useNavigate} from 'react-router-dom';
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
 export const Acceso = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+
+
+    useEffect(() => {
+        
+        if (store.currentUser !== null) {
+            navigate('/')
+            console.log(store)
+        }
+    }, [])
 
   return (
     <div className="formulario card w-50">
@@ -14,7 +25,7 @@ export const Acceso = () => {
             className="imagen col-md-6"
             alt=""
           />
-          <form className="col">
+          <form className="col" onSubmit={(e) => actions.Login(e, navigate)}>
             <div className="input mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">
                 Email
@@ -24,6 +35,8 @@ export const Acceso = () => {
                 className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
+                onChange={actions.handleChange}
+                // value={store.currentUser.email}
               />
             </div>
             <div className="input mb-3">
@@ -34,6 +47,8 @@ export const Acceso = () => {
                 type="password"
                 className="form-control"
                 id="exampleInputPassword1"
+                onChange={actions.handleChange}
+                // value={store.currentUser.password}
               />
             </div>
             <button

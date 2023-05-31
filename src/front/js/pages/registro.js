@@ -21,7 +21,7 @@ export const Registro = () => {
             onSubmit={(e) => actions.handleSubmitRegister(e, navigate)}
           >
             <div className="input mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label  className="form-label">
                 Email
               </label>
               <input
@@ -30,27 +30,27 @@ export const Registro = () => {
                 className="form-control"
                 id="regitro_email"
                 placeholder="ingresa tu email"
-                onChange={actions.handleChangeUser}
+                onChange={actions.handleChangeInput}
                 value={store.newUser.email}
-                name="email"
+                name={"email"}
               />
             </div>
             <div className="input mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
+              <label  className="form-label">
                 Contraseña
               </label>
               <input
                 required
-                minlength="5"
-                maxlength="8"
+                minLength="5"
+                maxLength="8"
                 type="password"
                 label="Constraseña"
                 placeholder="Ingresa tu constraseña"
                 className="form-control item"
                 id="regitro_constraseña"
-                onChange={actions.handleChangeUser}
+                onChange={actions.handleChangeInput}
                 value={store.newUser.password}
-                name="password"
+                name={"password"}
               />
               <div id="passwordHelp" className="form-text">
                 Debe tener entre 5 y 8 caracteres.
