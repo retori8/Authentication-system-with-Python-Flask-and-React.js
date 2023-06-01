@@ -14,9 +14,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           initial: "white",
         },
       ],
+      email: "",
+      password: "",
       newUser: { email: "", password: "" },
       url: "https://3001-retori8-authentications-447bevuowdu.ws-us98.gitpod.io",
       currentUser: null,
+      books:[]
     },
 
     actions: {
@@ -63,7 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       Login: async (e, navigate) => {
         e.preventDefault();
         try {
-          const { url, email, password } = getStore();
+          const { url, email, password, currentUser } = getStore();
           let info = { email, password };
           const response = await fetch(`${url}/api/login`, {
             method: "POST",
@@ -76,11 +79,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json();
           console.log(data);
 
-          if (data.access_token) {
-            setStore({ currentUser: data });
+          if (data.token) {
+            setStore({ currentUser:data });
             sessionStorage.setItem("currentUser", JSON.stringify(data));
 
-            navigate("/home");
+            navigate("/galeria");
           } else {
             setStore({
               alert: {
@@ -118,6 +121,30 @@ const getState = ({ getStore, getActions, setStore }) => {
           sessionStorage.removeItem("currentUser");
         }
       },
+
+      //Books---------------------------------------------------------
+
+      getBooks: async () => {
+				const { url } = getStore()
+				try {
+					const response = await fetch(`${url}/api/libros`, {
+						metod: "GET",
+						headers: {
+							"Content-Type": "application/json",
+              'Authorization': `Bearer ${currentUser?.access_token}`
+						},
+					});
+					if (response.status === 404) throw Error("Page not found");
+					const books_info = await response.json();
+
+					setStore({
+						books: books_info,
+					});
+					console.log(books);
+				} catch (error) {
+					console.log(error.message);
+				}
+			},
 
       // Use getActions to call a function within a fuction
       exampleFunction: () => {

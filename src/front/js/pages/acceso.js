@@ -35,8 +35,9 @@ export const Acceso = () => {
                 className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
+                name={"email"}
                 onChange={actions.handleChange}
-                // value={store.currentUser.email}
+                value={store.email}
               />
             </div>
             <div className="input mb-3">
@@ -47,8 +48,9 @@ export const Acceso = () => {
                 type="password"
                 className="form-control"
                 id="exampleInputPassword1"
+                name={"password"}
                 onChange={actions.handleChange}
-                // value={store.currentUser.password}
+                value={store.password}
               />
             </div>
             <button

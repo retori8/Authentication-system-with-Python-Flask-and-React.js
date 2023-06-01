@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
 from api.models import db
-from api.models import db, User
+from api.models import db, User, Books
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
@@ -79,7 +79,8 @@ def register():
 
     user = User()
     user.email = request.json.get("email")
-    user.password = generate_password_hash(request.json.get("password"))
+    user.password = generate_password_hash(request.json.get("password")).encode("utf-8")
+    
     
     if not user.email:
         return jsonify({ "msg": "Necesitamos tu email"}), 422
@@ -103,7 +104,7 @@ def login_token():
     email = request.json.get("email")
     password = request.json.get("password")
     # Consulta la base de datos por el nombre de usuario y la contraseña
-    user = User.filter.query(email=email, password=password).first()
+    user = User.query.filter_by(email=email).first()
     if user is None:
           # el usuario no se encontró en la base de datos
         return jsonify({"msg": "Email/Contraseña son incorrectos"}), 401
@@ -111,13 +112,45 @@ def login_token():
     # crea un nuevo token con el id de usuario dentro
     access_token = create_access_token(identity=user.id)
     return jsonify({ "token": access_token, "user_id": user.id })  
+ 
 
 @app.route('/api/users', methods=['GET'])
 def get_all_users():#trae todos los registros que tengo en mi base de datos
     users = User.query.all()
     users = list(map(lambda user: user.serialize(), users))#por cada usuario que encuentre llame a serialize que me permite convertirlo en un objeto serializado para ser reconocido por python
 
-    return jsonify(users), 200       
+    return jsonify(users), 200  
+
+#BOOKS-------------------------------------------------------------------------------           
+
+@app.route('/api/libros', methods=['POST'])
+def add_book():
+    data = request.get_json()
+
+    book = Books()
+    book.title = data["title"]
+    book.year = data["year"]
+    book.image_url = data["image_url"]
+    book.new_book()  
+
+    return jsonify({"msg":"book created"}), 201
+
+@app.route('/api/libros', methods=['GET'])
+@jwt_required()
+def get_all_books():
+
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+
+    if not user:
+        return jsonify({ "msg": "Necesitamos tu registro/acceso"}), 422
+
+    else:    
+    
+        books = Books.query.all()
+        books = list(map(lambda book: book.serialize(), books))
+
+        return jsonify(books), 200      
 
 
 # this only runs if `$ python src/main.py` is executed

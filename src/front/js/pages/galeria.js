@@ -8,7 +8,18 @@ export const Galeria = () => {
 
   return (
     <div className="galeria row row-cols-1 row-cols-md-3 g-5 m-5">
-      <Card
+      {!!store.books &&
+					store.books?.length > 0 &&
+					store.books?.map((book, i) => {
+						return (
+							<Card
+								titulo={book?.title}
+								year={book?.year}
+								image_url={book?.image_url}
+							/>
+						);
+					})}
+      {/* <Card
         titulo=" Sputnik, mi amor"
         año=" 1999"
         img="https://i.pinimg.com/564x/b6/2c/f5/b62cf5d21f7c47fb3e32c0ea4f3e1824.jpg"
@@ -37,7 +48,7 @@ export const Galeria = () => {
         titulo=" Hombres sin mujeres"
         año=" 2014"
         img="https://i.pinimg.com/564x/1e/69/67/1e6967508112d7c6810d46f631f1ae92.jpg"
-      />
+      /> */}
     </div>
   );
 };
